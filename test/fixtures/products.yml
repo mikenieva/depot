@@ -1,5 +1,32 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# A fixture is an environment in which you can run a test. If you are testing a circuit board,
+# for example, you might mount it in a test fixture that provedes it with the power and inputs
+# needed to drive the function to be tested.
+
+# In the world of Rails, a test fixtures is simply a specification of the initial contents of a model
+# (or models) under test. If, for example, we want to ensure that our products table starts
+# off with known data at the start of every unit test, we can specify those contents in a fixture
+# and Rails will take care of the rest.
+
+# You specify fixture data in files in the test/fixtures directory. These files contain test data
+# in YAML format. Each fixture file contains the data for a single model. The name of the 
+# fixture file is significant; the base name of the file must match the name of a database
+# table. 
+
+
+# The fixture file contains an entry for each row that we want to insert into the database.
+# Each row is given a name. In the case of the Rails-generated fixture, the rows are named
+# one and two. 
+
+# The name gives us a convenient way to reference test data inside our test code.
+# They also are the names used in the generated integration tests, so for now, we will
+# leave them alone.
+
+# Inside each entry you will see an indented list of name/value pairs. Just like in your
+# config/database.yml, you must use spaces, not tabs, at the start of each of the data lines,
+# and the data lines, and all the lines for a row must have the same indentation.
+
 one:
   title: MyString
   description: MyText
@@ -11,3 +38,18 @@ two:
   description: MyText
   image_url: MyString
   price: 9.99
+
+# Let's add some more data to the fixture file with something we can use to test our
+# Product model:
+
+ruby:
+  title: Programming Ruby 1.9
+  description:
+    Ruby is the fastest growing and most exciting dynamic language out there. If you need to get 
+    working programs delivered fast, you should add Ruby to your toolbox.
+  price: 49.50
+  image_url: ruby.png
+
+# Now that we have a fixture file, we want Rails to load the test data into the products table
+# when we run the unit test. And , in fact, Rails is already doing this, but you can control which
+# fixtures to load by specifying the following line in test/models/product_test.rb.
