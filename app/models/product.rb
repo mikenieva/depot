@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 
 	# We want to make sure each product has a unique title.
-	validates :title, uniqueness: true
+	validates :title, uniqueness: true, length: { minimum: 10 }
 
 	# We need to validate the URL entered for the image is valid.
 	# "format" matches a field against a regex
@@ -19,4 +19,9 @@ class Product < ActiveRecord::Base
 		with: %r{\.(gif|jpg|png)\Z}i,
 		message: 'must be a URL for GIF, JPG or PNG image.'
 	}
+
+	def self.latest
+		Product.order(:updated_at).last
+	end
+
 end
